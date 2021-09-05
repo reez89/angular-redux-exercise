@@ -1,5 +1,5 @@
 // All'interno degli effects vengono effettuate le chiamate http.
-import { map, exhaustMap, tap, mergeMap} from 'rxjs/operators';
+import { map, tap, switchMap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { HttpClient } from "@angular/common/http";
@@ -15,11 +15,13 @@ export class GetBooks {
     loadBooks$ = createEffect(() =>
       this.actions$.pipe(
         ofType(FetchData),
-          exhaustMap((action) =>
+          switchMap(() =>
            {
-             return this.dataService.searchBooks('javascript').pipe(
+             return this.dataService.searchBooks('all').pipe(
               map((books: BooksResponse) => {
-                return  UpdateData(books.items)
+                const newBooksArray = []
+                newBooksArray.push(books.items)
+                return  UpdateData(newBooksArray)
               }),
               tap(books => {
                 console.log('EFFECT',books)

@@ -8,7 +8,7 @@ export const FetchData = createAction(
 
 export const UpdateData = createAction(
   '[Book List/API] Get all Books Success',
-  (books: Book) => ({books})
+  (books: Book[]) => ({books})
 );
 
 export const UpdateState = createAction(

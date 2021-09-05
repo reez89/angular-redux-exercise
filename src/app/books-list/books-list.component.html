@@ -1,9 +1,7 @@
 <div class="books">
-  <section *ngFor="let book of books$ | async">
-
-          <p> {{  book | json }}  </p>
-
-
+  <div *ngFor="let book of books$ | async">
       <p>{{ book | json}}</p>
-    </section>
+      <p>{{  book.kind }}</p>
+      <p>{{  book.volumeInfo.title }}</p>
+  </div>
 </div>
