@@ -1,7 +1,7 @@
-<div class="books">
+<div class="books" *ngIf="books$ | async">
   <div *ngFor="let book of books$ | async">
-      <p>{{ book | json}}</p>
-      <p>{{  book.kind }}</p>
-      <p>{{  book.volumeInfo.title }}</p>
+      <p>{{book}}</p>
+      <p>{{ book | json }}</p>
+      <p>{{ book.volumeInfo.title }}</p>
   </div>
 </div>
