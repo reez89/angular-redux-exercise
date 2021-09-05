@@ -1,8 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Book } from "src/models/book";
-import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { concatMap, delay, exhaustMap, filter, map, mergeMap, tap } from "rxjs/operators";
+import { BooksResponse } from "src/models/booksResponse";
+
 
 
 @Injectable({
@@ -14,10 +16,11 @@ export class GoogleBookService{
 
   constructor(private http: HttpClient) {}
 
-  searchBooks(queryTitle: string): Observable<Book[]> {
+  searchBooks(queryTitle: string): Observable<BooksResponse> {
     return this.http
-      .get<{ items: Book[] }>(`${this.API_PATH}?orderBy=newest&q=${queryTitle}`)
-      .pipe(map((books) => books.items || []));
+      .get<BooksResponse>(`
+        ${this.API_PATH}?maxResults=5&orderBy=newest&q=${queryTitle}
+      `)
   }
 
 }

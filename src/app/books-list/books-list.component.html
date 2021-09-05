@@ -1,0 +1,9 @@
+<div class="books">
+  <section *ngFor="let book of books$ | async">
+
+          <p> {{  book | json }}  </p>
+
+
+      <p>{{ book | json}}</p>
+    </section>
+</div>
