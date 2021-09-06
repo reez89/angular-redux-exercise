@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Book } from 'src/models/book';
 import { BooksState } from 'src/redux/reducers/home.reducer';
 import { booksSelector } from 'src/redux/selectors/home.selectors';
 
@@ -10,7 +12,7 @@ import { booksSelector } from 'src/redux/selectors/home.selectors';
 })
 export class BooksListComponent implements OnInit {
 
-  books$ = this.store.pipe(select(booksSelector));
+  books$: Observable<ReadonlyArray<Book>> = this.store.pipe(select(booksSelector));
 
   constructor(private store: Store<BooksState>) {}
 

@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { GoogleBookService } from 'src/services/google-api.service';
 import { FetchData, UpdateData } from '../actions/home.actions';
 import { BooksResponse } from 'src/models/booksResponse';
+import { Book } from 'src/models/book';
 
 @Injectable()
 export class GetBooks {
@@ -17,14 +18,10 @@ export class GetBooks {
            {
              return this.dataService.searchBooks('javascript').pipe(
               map((books: BooksResponse) => {
-                // const newBooksArray = []
-                // newBooksArray.push(books.items)
-                // console.log(newBooksArray)
-                // console.log(books)
-                return  UpdateData(books.items)
+                return  UpdateData(books)
               }),
               tap(books => {
-                console.log('EFFECT',books)
+                //console.log('EFFECT',books)
               })
             )
           }
@@ -34,7 +31,6 @@ export class GetBooks {
 
     constructor(
       private actions$: Actions,
-      private http: HttpClient,
       private dataService: GoogleBookService
     ) {}
 }
