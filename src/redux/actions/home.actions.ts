@@ -1,6 +1,6 @@
-import { State } from '../reducers/home.reducer';
+import { BooksResponse } from 'src/models/booksResponse';
 import { Book } from 'src/models/book';
-import { createAction, props } from '@ngrx/store';
+import { createAction } from '@ngrx/store';
 
 export const FetchData = createAction(
   '[Book List/API] Get all Books'
@@ -8,7 +8,7 @@ export const FetchData = createAction(
 
 export const UpdateData = createAction(
   '[Book List/API] Get all Books Success',
-  (books: Book) => ({books})
+  (books: BooksResponse) => ({books})
 );
 
 export const UpdateState = createAction(

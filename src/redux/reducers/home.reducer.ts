@@ -1,7 +1,7 @@
 import { GetBooks } from './../effects/home.effects';
 import { createReducer, on, Action } from '@ngrx/store';
 import { Book } from "src/models/book";
-import { UpdateData } from '../actions/home.actions';
+import { FetchData, UpdateData } from '../actions/home.actions';
 import { BooksResponse } from 'src/models/booksResponse';
 
 
@@ -25,8 +25,6 @@ export const initialBookArray: ReadonlyArray<Book> = [];
 
 export const getBooks = createReducer(
   initialBookArray,
-  on(UpdateData, ( state , {books}  ) => [books] )
+  on(UpdateData, ( state , {books} ) => (books.items))
 );
-
-
 

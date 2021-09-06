@@ -1,7 +1,7 @@
 import { Book } from "./book";
 
-export interface BooksResponse extends Book {
+export interface BooksResponse  {
   kind: string,
   totalItems: number,
-  items: Book
+  items: Array<Book>
 }
